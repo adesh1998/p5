@@ -1,6 +1,6 @@
-from random import randrange
 import numpy as np
 from p5 import *
+import secrets
 
 
 class FlowField:
@@ -12,7 +12,7 @@ class FlowField:
 
     def _generate(self):
         field = []
-        noise_seed(randrange(10000))
+        noise_seed(secrets.SystemRandom().randrange(10000))
         offset = 0.1
         xoff = yoff = 0.0
         for r in range(self.rows):
@@ -121,8 +121,8 @@ def setup():
     flowfield = FlowField(20)
     vehicles = [
         Vehicle(
-            randrange(width),
-            randrange(height),
+            secrets.SystemRandom().randrange(width),
+            secrets.SystemRandom().randrange(height),
             random_uniform(5, 20),
             random_uniform(0.3, 0.6),
         )
