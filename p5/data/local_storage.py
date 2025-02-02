@@ -5,6 +5,7 @@
 import pathlib
 import pickle
 import os
+import fickling
 
 local_storage_path = os.path.join(pathlib.Path.home(), ".p5pyStorage")
 
@@ -26,7 +27,7 @@ def get_item(key):
     item_file_path = os.path.join(local_storage_path, key)
     if os.path.isfile(item_file_path):
         with open(item_file_path, "rb") as f:
-            return pickle.load(f)
+            return fickling.load(f)
     else:
         return None
 
