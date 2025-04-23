@@ -16,7 +16,6 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-import xml.etree.ElementTree as etree
 import math
 import re
 import numpy as np
@@ -27,6 +26,7 @@ from . import primitives
 from . import transforms
 from ..pmath import matrix
 from .constants import ROUND
+import defusedxml.ElementTree
 
 default_values = {  # default values of SVG attributes
     "stroke-width": 1,
@@ -173,7 +173,7 @@ def load_shape(filename):
     :type filename: str
 
     """
-    tree = etree.parse(filename)
+    tree = defusedxml.ElementTree.parse(filename)
 
     root = tree.getroot()
     if root.tag != "{http://www.w3.org/2000/svg}svg":
