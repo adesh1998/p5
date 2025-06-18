@@ -42,6 +42,6 @@ def http_post(url: str, post_data: Dict):
     :param post_data: Key-value pairs of the request payload.
 
     """
-    data = requests.post(url, post_data)
+    data = requests.post(url, post_data, timeout=60)
     data = data.json()
     return data
