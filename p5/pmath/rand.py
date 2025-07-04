@@ -16,11 +16,11 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 
-import random
 
 from ..pmath import constrain
 from .utils import SINCOS_LENGTH
 from .utils import PRE_COS
+import secrets
 
 __all__ = [
     # PERLIN NOISE FUNCTIONS
@@ -107,7 +107,7 @@ def noise(x: float, y: float = 0, z: float = 0) -> float:
     # P: noise broke due to recent change of cos table in PGraphics
     # P: this will take care of it
     if PERLIN is None:
-        PERLIN = [random.random() for _ in range(PERLIN_SIZE + 1)]
+        PERLIN = [secrets.SystemRandom().random() for _ in range(PERLIN_SIZE + 1)]
 
     x = (-1 * x) if x < 0 else x
     xi = int(x)
@@ -217,7 +217,7 @@ def random_uniform(high: float = 1, low: float = 0) -> float:
     :returns: A random number between :code:`low` and :code:`high`.
 
     """
-    return random.uniform(low, high)
+    return secrets.SystemRandom().uniform(low, high)
 
 
 def random_gaussian(mean: float = 0, std_dev: float = 1) -> float:
@@ -233,7 +233,7 @@ def random_gaussian(mean: float = 0, std_dev: float = 1) -> float:
         the given :code:`mean` and :code:`std_dev`.
 
     """
-    return random.gauss(mean, std_dev)
+    return secrets.SystemRandom().gauss(mean, std_dev)
 
 
 def random_seed(seed: int):
@@ -241,4 +241,4 @@ def random_seed(seed: int):
 
     :param seed: The required seed value.
     """
-    random.seed(seed)
+    secrets.SystemRandom().seed(seed)

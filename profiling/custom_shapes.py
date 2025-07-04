@@ -1,7 +1,7 @@
 # Adapted from
 import cProfile
-import random
 from p5 import *
+import secrets
 
 FRAME_MAX = 1000
 
@@ -27,7 +27,7 @@ def draw():
         with push_matrix():
             begin_shape()
             rotate(random_uniform(0, 2 * PI))
-            translate(random.randint(-200, 200), random.randint(-20, 20))
+            translate(secrets.SystemRandom().randint(-200, 200), secrets.SystemRandom().randint(-20, 20))
             transformed_pts = transform(
                 points, np.asarray((20, 20)), np.asarray((width / 2, height / 2))
             )
@@ -37,7 +37,7 @@ def draw():
 
 
 if __name__ == "__main__":
-    random.seed(42)
+    secrets.SystemRandom().seed(42)
     pr = cProfile.Profile()
     pr.enable()
     try:
